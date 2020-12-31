@@ -1,0 +1,84 @@
+<configuration debug="true">
+
+	<property name="HOME_LOG"
+		value="/Users/coderbd/Documents" />
+
+	<!-- Console (STDOUT) output. -->
+	<appender name="CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<!-- Default encoder is ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+		<encoder>
+			<!-- two-line layout suitable for a terminal -->
+			<pattern>%date{HH:mm:ss.SSS} [%.16thread] [%-5level] %logger{25}: %msg
+				%X%n
+			</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+
+	<!-- The output file configuration for log/all.log -->
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<!-- Default encoder is ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+		<encoder>
+			<pattern>%date{HH:mm:ss.SSS} [%.16thread] [%-5level] %logger{25}: %msg
+				%X%n
+			</pattern>
+		</encoder>
+
+		<!-- Default location of log file is jrsapp.log -->
+		<file>${HOME_LOG}/jrsapp.log</file>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- Roll over log files daily -->
+			<fileNamePattern>${HOME_LOG}/archived/jrsapp.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+
+			<!-- And start a new file every 64 MB -->
+			<maxFileSize>64 MB</maxFileSize>
+
+			<!-- Keep at most 15 days of history -->
+			<maxHistory>15</maxHistory>
+
+			<!-- Up to a maximum of 512 MB -->
+			<totalSizeCap>512MB</totalSizeCap>
+
+			<!-- Ensure short-lived processes still clean up old logs -->
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+	</appender>
+
+
+	<!-- Root log level is "ALL", meaning all log levels are emitted. -->
+	<root level="ALL">
+
+		<!-- Send all log messages to console (filtered to WARN) -->
+		<appender-ref ref="CONSOLE" />
+
+		<!-- Send all log messages to log/all.log -->
+		<appender-ref ref="FILE" />
+	</root>
+
+	<!-- If you have a REPL or interactive shell with a logger named 'user' 
+		or 'dev', send those messages to log/app.log too. -->
+
+	<logger name="user" level="ALL">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<logger name="dev" level="ALL">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+
+	<!-- Make java.util.logging more efficient at disabled levels. See http://logback.qos.ch/manual/configuration.html#LevelChangePropagator -->
+	<contextListener
+		class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+</configuration>
