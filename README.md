@@ -180,13 +180,9 @@ public enum ResponseCode {
 
 We use `@Git` for @versioning.
 
-## Authors
+## Authors & Developments
 
 * **Biswajit Debnath** - *Initial work*
-
-## Developments
-
-* Biswajit Debnath
 
 ## License
 
