@@ -12,7 +12,7 @@ public class JRSApp extends ResourceConfig {
 	public JRSApp() {
 		packages("com.jrsapp.init");
 		packages("com.jrsapp.api");
-		//packages("com.jrsapp.dto");
+		packages("com.jrsapp.filter");
 		System.out.println("JRSApp");
 	}
 

@@ -9,8 +9,7 @@
 		<!-- Default encoder is ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
 		<encoder>
 			<!-- two-line layout suitable for a terminal -->
-			<pattern>%date{HH:mm:ss.SSS} [%.16thread] [%-5level] %logger{25}: %msg
-				%X%n
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-15thread] [%-5level] %-30.30class{0}.%-25.25M:%-4L - %msg%X%n
 			</pattern>
 			<charset>UTF-8</charset>
 		</encoder>
@@ -23,8 +22,7 @@
 
 		<!-- Default encoder is ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
 		<encoder>
-			<pattern>%date{HH:mm:ss.SSS} [%.16thread] [%-5level] %logger{25}: %msg
-				%X%n
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-15thread] [%-5level] %-30.30class{0}.%-25.25M:%-4L - %msg%X%n
 			</pattern>
 		</encoder>
 
